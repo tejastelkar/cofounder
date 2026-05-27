@@ -1,0 +1,289 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #f5f5f5;
+  color: #222;
+  font-size: 14px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  font-size: 14px;
+}
+
+nav {
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 0 20px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav .logo {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+nav .links {
+  display: flex;
+  gap: 20px;
+  color: #555;
+}
+
+nav .links a:hover {
+  color: #000;
+}
+
+nav .signout {
+  background: none;
+  border: none;
+  color: #888;
+  padding: 0;
+}
+
+nav .signout:hover {
+  color: #333;
+}
+
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.page h1 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.page .sub {
+  color: #888;
+  margin-bottom: 28px;
+}
+
+.login-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-box {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 32px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.login-box h1 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.field {
+  margin-bottom: 14px;
+}
+
+.field label {
+  display: block;
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+.field input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+}
+
+.field input:focus {
+  border-color: #888;
+}
+
+.btn {
+  background: #1a56db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 9px 16px;
+  font-weight: 500;
+  width: 100%;
+}
+
+.btn:hover {
+  background: #1447c0;
+}
+
+.progress-bar-wrap {
+  margin-bottom: 28px;
+}
+
+.progress-bar-wrap .progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.progress-bar-bg {
+  background: #e0e0e0;
+  border-radius: 4px;
+  height: 6px;
+}
+
+.progress-bar-fill {
+  background: #1a56db;
+  height: 6px;
+  border-radius: 4px;
+  transition: width 0.25s ease;
+}
+
+.step-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.step-card.done {
+  border-color: #b9f0c8;
+}
+
+.step-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  color: #666;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-num.done {
+  background: #d4f5e0;
+  color: #1a7a3c;
+}
+
+.step-info {
+  flex: 1;
+}
+
+.step-info h3 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.step-info h3.done {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.step-info p {
+  font-size: 13px;
+  color: #888;
+}
+
+.mark-btn {
+  border: 1px solid #1a56db;
+  background: #fff;
+  color: #1a56db;
+  border-radius: 5px;
+  padding: 6px 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.mark-btn:hover {
+  background: #eef3ff;
+}
+
+.mark-btn.done {
+  border-color: #ccc;
+  color: #888;
+}
+
+.mark-btn.done:hover {
+  background: #f5f5f5;
+}
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.dash-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 18px;
+  display: block;
+}
+
+.dash-card:hover {
+  border-color: #aaa;
+}
+
+.dash-card .label {
+  font-size: 11px;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.dash-card h2 {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.dash-card p {
+  font-size: 13px;
+  color: #888;
+}
+
+@media (max-width: 600px) {
+  nav .links {
+    display: none;
+  }
+
+  .step-card {
+    flex-direction: column;
+  }
+
+  .mark-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
