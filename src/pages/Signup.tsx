@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-export default function Login() {
+export default function Signup() {
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
@@ -15,8 +16,18 @@ export default function Login() {
   return (
     <div className="login-wrap">
       <div className="login-box">
-        <h1>Sign in</h1>
+        <h1>Create account</h1>
         <form onSubmit={handleSubmit}>
+          <div className="field">
+            <label>Name</label>
+            <input
+              type="text"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              placeholder="Your name"
+              required
+            />
+          </div>
           <div className="field">
             <label>Email</label>
             <input
@@ -37,10 +48,10 @@ export default function Login() {
               required
             />
           </div>
-          <button className="btn" type="submit">Sign in</button>
+          <button className="btn" type="submit">Create account</button>
         </form>
         <p className="auth-switch">
-          Don't have an account? <Link to="/signup">Sign up</Link>
+          Already have an account? <Link to="/login">Sign in</Link>
         </p>
       </div>
     </div>
