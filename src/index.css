@@ -12,6 +12,7 @@
   --muted: #888;
   --subtle: #555;
   --input-border: #ccc;
+  --input-focus: #555;
   --hover-border: #aaa;
   --step-done-border: #b9f0c8;
   --step-num-bg: #f0f0f0;
@@ -22,6 +23,12 @@
   --progress-bg: #e0e0e0;
   --mark-btn-hover: #eef3ff;
   --mark-done-hover: #f5f5f5;
+  --error: #d93025;
+  --error-bg: #fff5f4;
+  --success: #1a7a3c;
+  --strength-weak: #e53935;
+  --strength-medium: #f59e0b;
+  --strength-strong: #16a34a;
 }
 
 html.dark {
@@ -32,6 +39,7 @@ html.dark {
   --muted: #666;
   --subtle: #aaa;
   --input-border: #3a3a3a;
+  --input-focus: #888;
   --hover-border: #555;
   --step-done-border: #1a4a2a;
   --step-num-bg: #2a2a2a;
@@ -42,6 +50,51 @@ html.dark {
   --progress-bg: #2a2a2a;
   --mark-btn-hover: #1e2a4a;
   --mark-done-hover: #222;
+  --error: #f87171;
+  --error-bg: #2a1a1a;
+  --success: #4ade80;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  15%       { transform: translateX(-6px); }
+  30%       { transform: translateX(6px); }
+  45%       { transform: translateX(-4px); }
+  60%       { transform: translateX(4px); }
+  75%       { transform: translateX(-2px); }
+  90%       { transform: translateX(2px); }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 40px;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes strengthGrow {
+  from { width: 0; }
 }
 
 body {
@@ -141,73 +194,194 @@ nav .theme-toggle:hover {
   align-items: center;
   justify-content: center;
   background: var(--bg);
+  padding: 20px;
 }
 
 .login-box {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 32px;
+  border-radius: 10px;
+  padding: 36px 32px;
   width: 100%;
-  max-width: 360px;
+  max-width: 380px;
+  animation: fadeUp 0.35s ease both;
+}
+
+.login-box.shake {
+  animation: shake 0.45s ease;
 }
 
 .login-box h1 {
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 600;
-  margin-bottom: 20px;
+  margin-bottom: 6px;
   color: var(--text);
 }
 
+.login-box .tagline {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
 .field {
-  margin-bottom: 14px;
+  margin-bottom: 16px;
+}
+
+.field-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
 }
 
 .field label {
   display: block;
   font-size: 13px;
   color: var(--subtle);
-  margin-bottom: 5px;
+  font-weight: 500;
 }
 
-.field input {
+.input-wrap {
+  position: relative;
+}
+
+.input-wrap input {
   width: 100%;
-  padding: 8px 10px;
+  padding: 9px 36px 9px 11px;
   border: 1px solid var(--input-border);
-  border-radius: 5px;
+  border-radius: 6px;
   font-size: 14px;
   outline: none;
   background: var(--surface);
   color: var(--text);
+  transition: border-color 0.15s;
 }
 
-.field input:focus {
-  border-color: var(--subtle);
+.input-wrap input:focus {
+  border-color: var(--input-focus);
 }
+
+.input-wrap input.has-error {
+  border-color: var(--error);
+  background: var(--error-bg);
+}
+
+.input-wrap input.is-valid {
+  border-color: var(--success);
+}
+
+.toggle-pw {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 0;
+  line-height: 1;
+}
+
+.toggle-pw:hover {
+  color: var(--text);
+}
+
+.field-error {
+  margin-top: 5px;
+  font-size: 12px;
+  color: var(--error);
+  animation: slideDown 0.2s ease both;
+  overflow: hidden;
+}
+
+.strength-bar {
+  margin-top: 7px;
+  height: 3px;
+  background: var(--progress-bg);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.strength-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s ease, background 0.3s ease;
+  animation: strengthGrow 0.3s ease;
+}
+
+.strength-fill.weak   { background: var(--strength-weak); }
+.strength-fill.medium { background: var(--strength-medium); }
+.strength-fill.strong { background: var(--strength-strong); }
+
+.strength-label {
+  font-size: 11px;
+  margin-top: 4px;
+  color: var(--muted);
+}
+
+.strength-label.weak   { color: var(--strength-weak); }
+.strength-label.medium { color: var(--strength-medium); }
+.strength-label.strong { color: var(--strength-strong); }
 
 .btn {
   background: #1a56db;
   color: #fff;
   border: none;
-  border-radius: 5px;
-  padding: 9px 16px;
+  border-radius: 6px;
+  padding: 10px 16px;
   font-weight: 500;
   width: 100%;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.15s, opacity 0.15s;
+  margin-top: 4px;
 }
 
-.btn:hover {
+.btn:hover:not(:disabled) {
   background: #1447c0;
+}
+
+.btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.btn-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  flex-shrink: 0;
+}
+
+.form-error {
+  background: var(--error-bg);
+  border: 1px solid var(--error);
+  border-radius: 6px;
+  padding: 9px 12px;
+  font-size: 13px;
+  color: var(--error);
+  margin-bottom: 14px;
+  animation: slideDown 0.2s ease both;
 }
 
 .auth-switch {
   text-align: center;
-  margin-top: 16px;
+  margin-top: 18px;
   font-size: 13px;
   color: var(--muted);
 }
 
 .auth-switch a {
   color: #1a56db;
+  font-weight: 500;
 }
 
 .auth-switch a:hover {
@@ -248,6 +422,11 @@ nav .theme-toggle:hover {
   align-items: flex-start;
   gap: 14px;
   margin-bottom: 10px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.step-card:hover {
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
 }
 
 .step-card.done {
@@ -266,6 +445,7 @@ nav .theme-toggle:hover {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: background 0.2s, color 0.2s;
 }
 
 .step-num.done {
@@ -282,6 +462,7 @@ nav .theme-toggle:hover {
   font-weight: 500;
   margin-bottom: 2px;
   color: var(--text);
+  transition: color 0.2s;
 }
 
 .step-info h3.done {
@@ -302,6 +483,7 @@ nav .theme-toggle:hover {
   padding: 6px 12px;
   white-space: nowrap;
   flex-shrink: 0;
+  transition: background 0.15s;
 }
 
 .mark-btn:hover {
@@ -329,10 +511,13 @@ nav .theme-toggle:hover {
   border-radius: 8px;
   padding: 18px;
   display: block;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
 }
 
 .dash-card:hover {
   border-color: var(--hover-border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  transform: translateY(-1px);
 }
 
 .dash-card .label {
@@ -358,6 +543,10 @@ nav .theme-toggle:hover {
 @media (max-width: 600px) {
   nav .links {
     display: none;
+  }
+
+  .login-box {
+    padding: 28px 20px;
   }
 
   .step-card {
