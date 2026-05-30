@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { validateLogin } from '../utils/validate'
 import { loginUser } from '../utils/users'
+import ThemeToggle from '../components/ThemeToggle'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -63,6 +64,7 @@ export default function Login() {
 
   return (
     <div className="login-wrap">
+      <ThemeToggle />
       <div ref={boxRef} className={`login-box ${shaking ? 'shake' : ''}`}>
         <h1>Welcome back</h1>
         <p className="tagline">Sign in to your account to continue.</p>

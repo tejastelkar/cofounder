@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { validateSignup, getPasswordStrength } from '../utils/validate'
 import { registerUser } from '../utils/users'
+import ThemeToggle from '../components/ThemeToggle'
 
 const strengthLabels = ['', 'Weak', 'Medium', 'Strong']
 const strengthClasses = ['', 'weak', 'medium', 'strong']
@@ -70,6 +71,7 @@ export default function Signup() {
 
   return (
     <div className="login-wrap">
+      <ThemeToggle />
       <div className={`login-box ${shaking ? 'shake' : ''}`}>
         <h1>Create account</h1>
         <p className="tagline">Get started — it only takes a minute.</p>

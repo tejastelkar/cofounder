@@ -195,6 +195,26 @@ nav .theme-toggle:hover {
   justify-content: center;
   background: var(--bg);
   padding: 20px;
+  position: relative;
+}
+
+.theme-toggle-float {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--subtle);
+  padding: 5px 10px;
+  font-size: 12px;
+  transition: border-color 0.15s, color 0.15s;
+  z-index: 10;
+}
+
+.theme-toggle-float:hover {
+  border-color: var(--hover-border);
+  color: var(--text);
 }
 
 .login-box {
